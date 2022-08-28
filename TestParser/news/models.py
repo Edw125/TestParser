@@ -2,12 +2,12 @@ from django.db import models
 
 
 class Tag(models.Model):
-    name = models.CharField('Название', max_length=50)
+    name = models.CharField('Name', max_length=50)
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
         constraints = (
             models.UniqueConstraint(
                 fields=['name'], name='unique tag',
@@ -18,18 +18,18 @@ class Tag(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField('Заголовок', max_length=200)
-    resource = models.URLField('Ресурс', max_length=200)
-    body = models.TextField('Текст новости')
+    title = models.CharField('Title', max_length=200)
+    resource = models.URLField('URL', max_length=200)
+    body = models.TextField('News Text')
     created_at = models.DateTimeField()
     tags = models.ManyToManyField(
-        Tag, blank=True, related_name='news', verbose_name='Тег'
+        Tag, blank=True, related_name='news', verbose_name='Tag'
     )
 
     class Meta:
         ordering = ('-created_at',)
-        verbose_name = 'Новость'
-        verbose_name_plural = 'Новости'
+        verbose_name = 'News'
+        verbose_name_plural = 'News'
         constraints = (
             models.UniqueConstraint(
                 fields=['title'],

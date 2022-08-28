@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from news.models import Tag, News
+from .parsers.parser import parse_news
 from .serializers import TagSerializer, NewsSerializer
-from .parser import parse_news
 
 
 class TagsViewSet(APIView):
@@ -57,12 +57,13 @@ class NewsViewSet(APIView):
                     created_at=time,
                     resource=url,
                 )
-                for tag_name in item['tags']:
-                    try:
-                        tag = Tag.objects.get(name=tag_name)
-                    except ObjectDoesNotExist:
-                        tag = Tag.objects.create(name=tag_name)
-                    news.tags.add(tag)
+                if item['tags'] is not None:
+                    for tag_name in item['tags']:
+                        try:
+                            tag = Tag.objects.get(name=tag_name)
+                        except ObjectDoesNotExist:
+                            tag = Tag.objects.create(name=tag_name)
+                        news.tags.add(tag)
 
         return Response(
                         {'detail': 'Records added successfully'},
