@@ -1,5 +1,4 @@
 import datetime
-import json
 import unicodedata
 import requests
 import logging
@@ -8,9 +7,24 @@ from bs4 import BeautifulSoup
 
 logging.getLogger(__name__).setLevel(logging.INFO)
 
-
-with open('headers.json', 'r') as json_file:
-    headers = json.load(json_file)
+headers = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3",
+    "Connection": "keep-alive",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0",
+    "Cookie": "__Secure-access-token=3.0.2MYFHfKnT-GBYqUr9ARDsw.85.l8cMBQAAAABjCebGOQ7IqaN3ZWKgAICQoA..20220828134329"
+              ".r_rTPEopWkRd8VgL2MFOiarnZwxs0neV8rvyUfTdRX4; "
+              "__Secure-refresh-token=3.0.2MYFHfKnT-GBYqUr9ARDsw.85.l8cMBQAAAABjCebGOQ7IqaN3ZWKgAICQoA"
+              "..20220828134329.fqOIjD7AvhZetkxHGXTnlmGvwyRssI613k-b0QNo9Rw; __Secure-ab-group=85; "
+              "__Secure-user-id=0; __cf_bm=tMNVSlokFt2as2wNxm6XOZCz3Li361HZ2zK9OU7hO2E-1661690714-0"
+              "-AaQ8i3opffp7EuVSySqlTI1jPHF6P9zIaynp46kDRtkg9WMdZkxM3cEZyO"
+              "+wJiDu76k1SkQz12c8x8ehvPCl1iIkyhAY8qMVoNq4T9EqtdvHKpOLFI4rew7qNciW0U3zqwbqRvVao2atv3zPJcLsYaCy"
+              "/SsIt83iJjqDtnh8b3R6"
+}
 
 
 def get_html(url):

@@ -6,3 +6,4 @@ python-dotenv==0.20.0
 django-filter~=22.1
 django-adminlte3==0.1.6
 djoser==2.1.0
+mysqlclient==2.1.1
