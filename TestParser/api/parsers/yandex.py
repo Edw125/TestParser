@@ -1,6 +1,4 @@
 import unicodedata
-from pprint import pprint
-
 import requests
 import logging
 
@@ -41,7 +39,6 @@ def parse_yandex(url):
                     "tags": tags
                 }
             )
-        pprint(clear_news_data)
         return clear_news_data
     else:
         logging.warning('Data was not found during parsing website')

@@ -6,8 +6,6 @@ services:
     restart: always
     ports:
       - '3306:3306'
-    volumes:
-      - mysql_data:/var/lib/mysql
     env_file:
       - ./.env
 
@@ -21,10 +19,11 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    links:
+      - db
     env_file:
       - ./.env
 
 volumes:
-  mysql_data:
   static:
   media:
