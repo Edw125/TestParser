@@ -17,7 +17,7 @@ docker rmi $(docker images -a -q)
 docker volume prune
 ```
 ## Примеры запросов
-* Админку можно посмотреть ро адресу `http://0.0.0.0:8000/admin`. Нужно создать учетку админа, написав команду 
+* Админку можно посмотреть по адресу `http://0.0.0.0:8000/admin`. Нужно создать учетку админа, написав команду 
 ```
 docker exec -it <container_id> python manage.py createsuperuser
 ```
@@ -30,7 +30,7 @@ docker exec -it <container_id> python manage.py createsuperuser
 }
 ```
 Полученный токен необходимо добавить в Headers Authorization каждого запроса.
-* Отправьте на эндпоинт `http://127.0.0.1:8000/api/news` следующий POST запрос с телом:
+* Отправьте на эндпоинт `http://0.0.0.0:8000/api/news` следующий POST запрос с телом:
 ```bash
 {
     "url": "https://market.yandex.ru/partners/news"
@@ -40,8 +40,8 @@ docker exec -it <container_id> python manage.py createsuperuser
 * Получить 10 новостей можно так: отправьте на эндпоинт `http://127.0.0.1:8000/api/news` GET запрос
 * Также работает фильтрация по Tags и Created_at c параметрами:
 ```bash
-http://127.0.0.1:8000/api/news?tags={value}
-http://127.0.0.1:8000/api/news?created_at={value}
+http://0.0.0.0:8000/api/news?tags={value}
+http://0.0.0.0:8000/api/news?created_at={value}
 ```
 Готово!
 ### Пример админзоны:
